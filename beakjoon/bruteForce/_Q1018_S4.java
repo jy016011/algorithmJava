@@ -1,4 +1,4 @@
-package beakjoon.implementation.silver;
+package beakjoon.bruteForce;
 
 import java.io.BufferedReader;
 import java.io.IOException;

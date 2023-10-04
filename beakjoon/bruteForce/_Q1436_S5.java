@@ -1,10 +1,10 @@
-package beakjoon.implementation.silver;
+package beakjoon.bruteForce;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _Q1436_ {
+public class _Q1436_S5 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(bufferedReader.readLine());
