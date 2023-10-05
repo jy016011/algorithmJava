@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Q10815_S5_BinarySearch { // solved by using binary search.
+public class _Q10816_S4_BinarySearch { // solved by using binary search.
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(bufferedReader.readLine());
@@ -26,18 +26,33 @@ public class _Q10815_S5_BinarySearch { // solved by using binary search.
         System.out.println(stringBuilder);
     }
     public static int binarySearch(int[] cards, int target, int start, int end){
-        while (start <= end){
-            int mid = (start + end) / 2;
-            if (cards[mid] == target){
-                return 1;
-            } else if (cards[mid] > target) {
-                end = mid - 1;
-            }
-            else {
-                start = mid + 1;
-            }
+        int count = upperBound(cards, target, start, end) - lowerBound(cards, target, start, end);
+        return count;
+    }
+    public static int upperBound(int[] cards, int target, int start, int end){
+        int lo = start;
+        int hi = end;
+        while (lo <= hi){
+            int mid = (lo + hi) / 2;
+            if (target < cards[mid])
+                hi = mid - 1;
+            else
+                lo = mid + 1;
         }
-        return 0;
+        return lo;
+    }
+
+    public static int lowerBound(int[] cards, int target, int start, int end){
+        int lo = start;
+        int hi = end;
+        while (lo <= hi){
+            int mid = (lo + hi) / 2;
+            if (target <= cards[mid])
+                hi = mid - 1;
+            else
+                lo = mid + 1;
+        }
+        return lo;
     }
 
 }
