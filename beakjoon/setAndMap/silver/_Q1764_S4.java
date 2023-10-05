@@ -1,0 +1,36 @@
+package beakjoon.setAndMap.silver;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class _Q1764_S4 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        int N = Integer.parseInt(stringTokenizer.nextToken());
+        int M = Integer.parseInt(stringTokenizer.nextToken());
+        HashSet<String> neverHear = new HashSet<>();
+        HashSet<String> neverSeen = new HashSet<>();
+        for (int i = 0; i < N; i++) {
+            neverHear.add(bufferedReader.readLine());
+        }
+        for (int i = 0; i < M; i++) {
+            neverSeen.add(bufferedReader.readLine());
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> unknowns = new ArrayList<>();
+        for (String name:
+             neverHear) {
+            if (neverSeen.contains(name))
+                unknowns.add(name);
+        }
+        unknowns.sort(String::compareTo);
+        for (String unknown:
+             unknowns) {
+            stringBuilder.append(unknown).append("\n");
+        }
+        System.out.println(unknowns.size() + "\n" + stringBuilder);
+    }
+}
