@@ -45,3 +45,14 @@ LinkedList는 특정 원소 접근 시의 성능은 ArrayDeque에 비해 떨어�
 But, Thread-safe하지 않으므로 Multi Thread환경에서는 문제가 있다. 멀티 때는 synchronized를 이용하여 구현.
 
 -> ArrayDeque 써야겠다.
+
+=============================================================================
+
+***23.10.17***
+
+Arrays.sort와 Collections.sort의 차이?
+
+Arrays.sort: Dual Pivot Quick sort 알고리즘, 베열을 대상, 시간복잡도는 평균 O(nlogn), 최악 O(n^2)
+
+Collections.sort: Tim sort 알고리즘, 리스트와 같은 객체 대상, 시간복잡도는 평균과 최악 모두 O(nlogn)
+
