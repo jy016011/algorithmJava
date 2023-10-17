@@ -51,7 +51,7 @@ But, Thread-safe하지 않으므로 Multi Thread환경에서는 문제가 있다
 
 Arrays.sort와 Collections.sort의 차이?
 
-Arrays.sort: 베열을 대상, 기본형 배열의 경우 Dual Pivot Quick sort 참조형(String[], Object[] 등)의 경우 Tim sort
+Arrays.sort: 베열을 대상, 기본형 배열의 경우 Dual Pivot Quick sort, 참조형(String[], Object[] 등)의 경우 Tim sort
 
 Collections.sort: Tim sort 알고리즘, 리스트와 같은 객체 대상
 
