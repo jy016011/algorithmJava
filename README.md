@@ -52,7 +52,17 @@ But, Thread-safe하지 않으므로 Multi Thread환경에서는 문제가 있다
 
 Arrays.sort와 Collections.sort의 차이?
 
-Arrays.sort: Dual Pivot Quick sort 알고리즘, 베열을 대상, 시간복잡도는 평균 O(nlogn), 최악 O(n^2)
+Arrays.sort: 베열을 대상, 기본형 배열의 경우 Dual Pivot Quick sort 참조형(String[], Object[] 등)의 경우 Tim sort
 
-Collections.sort: Tim sort 알고리즘, 리스트와 같은 객체 대상, 시간복잡도는 평균과 최악 모두 O(nlogn)
+Collections.sort: Tim sort 알고리즘, 리스트와 같은 객체 대상
+
+DualPivotQuickSort vs TimSort ?
+
+DualPivotQuickSort의 시간 복잡도는 평균 O(nlogn), 최악 O(n^2)
+
+TimSort의 시간 복잡도는 평균과 최악 모두 O(nlogn).
+
+그러나, 실제로는 평균 속도가 DualPivotQuickSort가 더 빠르고, 메모리도 MergerSort를 합쳐 만든 TimSort보다 덜 먹는다고 한다.
+
+또한, 기본형 배열의 경우 메모리에 연속적으로 저장하기때문에 참조 지역성이 좋아 DualPivotQucikSort의 성능이 극대화 되는 모양이다.(QuickSort의 참조지역성이 O(nlogn) 알고리즘 중에 제일 좋다고 한다.)
 
