@@ -61,7 +61,7 @@ DualPivotQuickSort의 시간 복잡도는 평균 O(nlogn), 최악 O(n^2)
 
 TimSort의 시간 복잡도는 평균과 최악 모두 O(nlogn).
 
-그러나, 실제로는 많은 경우에서 평균 속도가 DualPivotQuickSort가 더 빠르고, 메모리도 MergerSort(임시로 추가 메모리 공간을 만듬.)를 합쳐 만든 TimSort보다 덜 먹는다고 한다.
+그러나, 실제로는 평균 속도가 DualPivotQuickSort가 더 빠르고, 메모리도 MergerSort(임시로 추가 메모리 공간을 만듬.)를 합쳐 만든 TimSort보다 덜 먹는다고 한다.
 
 또한, 기본형 배열의 경우 메모리에 연속적으로 저장하기때문에 참조 지역성이 좋아 DualPivotQucikSort의 성능이 극대화 되는 모양이다.
 
