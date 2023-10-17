@@ -18,7 +18,9 @@ FoldingPaper구현을 파이썬과 자바 두 코드로 각각 작성하였는�
 ***23.10.16***
 
 백준 2346문제 풀이간 Deque를 LinkedList로 구현시 메모리 초과 발생하는 문제가 있었음.
+
 이는 ArrayDeque를 이용하여 해결.
+
 Deque이용시 ArrayDeque, LinkedList 어느걸 써야할까?
 
 ArrayDeque는 Deque의 구현체: 배열의 특성을 가짐, LinkedList는 List의 구현체: List의 특성을 가짐.
