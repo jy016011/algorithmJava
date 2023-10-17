@@ -35,7 +35,7 @@ ArrayDeque는 Deque의 구현체: 배열의 특성을 가짐, LinkedList는 List
 
 또한, ArrayDeque의 경우 Random Access가 가능하기에 원소 조회 시 속도가 빠름.
 
-LinkedList는 특정 원소 접근 시의 성능은 ArrayDeque에 비해 떨어짐.
+LinkedList는 특정 원소 접근 시의 성능은 ArrayDeque에 비해 떨어짐(O(n)).
 
 또한, ArrayDeque는 Array에 의해 지원되므로 LinkedList에 비해 cache-locality에 친숙하여 연산속도가 더 빠름.
 
@@ -67,7 +67,7 @@ TimSort의 시간 복잡도는 평균과 최악 모두 O(nlogn).
 
 (QuickSort의 참조지역성이 O(nlogn) 알고리즘 중에 제일 좋다고 한다.)
 
--> 배열의 경우 Arrays.sort 먼저 써보고, 시간 초과뜨면 Collections.sort 쓰자.
+-> 배열의 경우 Arrays.sort 먼저 써보고, 시간 초과뜨면 Collections.sort 쓰고, 객체는 그냥 Collections.sort 쓰자
 
 
 
