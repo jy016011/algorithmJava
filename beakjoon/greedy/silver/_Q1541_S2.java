@@ -1,4 +1,4 @@
-package beakjoon.greedy;
+package beakjoon.greedy.silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
