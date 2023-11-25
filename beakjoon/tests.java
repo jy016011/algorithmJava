@@ -16,15 +16,18 @@ public class tests {
     private static int TEST2;
     static List<Integer> test1;
 
-    public static void main(String[] args) {
-        String im = "3.0";
-        System.out.println(im.chars().allMatch(Character::isDigit));
-        System.out.printf("%,d원", 1_000_000);
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String input = bufferedReader.readLine();
+        List<String> numbers = toTrimmedStringList(input, ",");
+        System.out.println(numbers.size());
+        System.out.println(numbers.get(0).length());
     }
 
-    private static int getList(){
-
-        return TEST2;
+    public static List<String> toTrimmedStringList(String input, String separator) {
+        return Arrays.stream(
+                        input.split(separator, -1))
+                .map(String::trim).collect(Collectors.toList()
+                );
     }
-
 }
