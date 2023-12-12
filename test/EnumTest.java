@@ -3,13 +3,17 @@ package test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EnumTest {
     public static void main(String[] args) {
-        System.out.println(getBy("증정 이벤트"));
+        Map<EnumModel, Integer> map = new HashMap<>();
+        map.put(Discount.CHRISTMAS_D_DAY, 1);
+        System.out.println(map.containsKey(Discount.CHRISTMAS_D_DAY));
     }
 
     public static List<EnumModel> values() {
