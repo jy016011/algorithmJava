@@ -1,4 +1,4 @@
-package beakjoon.backTracking.dfsAndBfs.bfs;
+package beakjoon.backTracking.dfsAndBfs.bfs.silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
