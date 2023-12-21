@@ -18,11 +18,11 @@ public class _Q5014_S1 {
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
         F = Integer.parseInt(stringTokenizer.nextToken()); // max floor of building
         floors = new int[F + 1];
-        S = Integer.parseInt(stringTokenizer.nextToken()); // location of Gang Ho
-        floors[S] = 1;
-        G = Integer.parseInt(stringTokenizer.nextToken()); // location of StartLink
-        int U = Integer.parseInt(stringTokenizer.nextToken()); // unit of moving up
-        int D = Integer.parseInt(stringTokenizer.nextToken()); // unit of moving down
+        S = Integer.parseInt(stringTokenizer.nextToken()); // floor of Gang Ho
+        floors[S] = 1; // set value over zero to do not revisiting start floor
+        G = Integer.parseInt(stringTokenizer.nextToken()); // floor of StartLink
+        int U = Integer.parseInt(stringTokenizer.nextToken()); // unit of moving to up
+        int D = Integer.parseInt(stringTokenizer.nextToken()); // unit of moving to down
         bfs(U, D);
         if (!isArrived) {
             System.out.println(CANNOT_USE_ELEVATOR);
