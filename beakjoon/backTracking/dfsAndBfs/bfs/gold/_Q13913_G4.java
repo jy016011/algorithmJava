@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class _Q13549_G5 {
+public class _Q13913_G4 {
     private static final int[] map = new int[100_001];
+    private static final int[] before = new int[100_001];
     private static final boolean[] visited = new boolean[100_001];
     private static int N, K;
 
@@ -18,11 +20,23 @@ public class _Q13549_G5 {
         N = Integer.parseInt(stringTokenizer.nextToken());
         K = Integer.parseInt(stringTokenizer.nextToken());
         bfs();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(K);
+        int index = K;
+        while (index != N) {
+            stack.push(before[index]);
+            index = before[index];
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!stack.isEmpty()) {
+            stringBuilder.append(stack.pop()).append(" ");
+        }
         System.out.println(map[K]);
-
+        System.out.println(stringBuilder);
     }
 
     private static void bfs() {
+        int[] dx = {-1, 1, 2};
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(N);
         visited[N] = true;
@@ -32,23 +46,21 @@ public class _Q13549_G5 {
             if (current == K) {
                 return;
             }
+            int next;
+            for (int i = 0; i < 3; i++) {
+                if (dx[i] == 2) {
+                    next = current * dx[i];
+                } else {
+                    next = current + dx[i];
+                }
 
-            if (current * 2 <= 100_000 && !visited[current * 2]) {
-                queue.offer(current * 2);
-                visited[current * 2] = true;
-                map[current * 2] = map[current];
-            }
-
-            if (current - 1 >= 0 && !visited[current - 1]) {
-                queue.offer(current - 1);
-                visited[current - 1] = true;
-                map[current - 1] = map[current] + 1;
-            }
-
-            if (current + 1 <= 100_000 && !visited[current + 1]) {
-                queue.offer(current + 1);
-                visited[current + 1] = true;
-                map[current + 1] = map[current] + 1;
+                if (next < 0 || next > 100_000 || visited[next]) {
+                    continue;
+                }
+                queue.offer(next);
+                visited[next] = true;
+                map[next] = map[current] + 1;
+                before[next] = current;
             }
         }
     }
