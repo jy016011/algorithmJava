@@ -9,44 +9,21 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[] arr = new int[n];
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        int[] dx = {0, 1, 0, -1};
-        int[] dy = {1, 0, -1, 0};
-        int n = Integer.parseInt(stringTokenizer.nextToken());
-        int m = Integer.parseInt(stringTokenizer.nextToken());
-        char[][] matrix = new char[n][m];
-        int curRow = 0;
-        int curCol = 0;
-        matrix[curRow][curCol] = (char) 65;
-        int dir = 0;
-        int cycle = 1;
-        while (cycle < n * m) {
-            int nextRow = curRow + dx[dir];
-            int nextCol = curCol + dy[dir];
-            if (nextRow < 0 || nextCol < 0 || nextRow >= n || nextCol >= m || matrix[nextRow][nextCol] != '\u0000') {
-                if (dir == 3) {
-                    dir = 0;
-                } else {
-                    dir++;
-                }
-                continue;
-            }
-            if (matrix[curRow][curCol] < 90) {
-                matrix[nextRow][nextCol] = (char) ((int) matrix[curRow][curCol] + 1);
-            } else {
-                matrix[nextRow][nextCol] = (char) 65;
-            }
-            curRow = nextRow;
-            curCol = nextCol;
-            cycle++;
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(stringTokenizer.nextToken());
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (char[] row : matrix) {
-            for (char point : row) {
-                stringBuilder.append(point).append(" ");
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+            for (int j = 0; j < n; j++) {
+                int distance = Math.abs(i - j);
+                sum += distance * arr[j];
             }
-            stringBuilder.append(System.lineSeparator());
+            min = Math.min(min, sum);
         }
-        System.out.println(stringBuilder);
+        System.out.println(min);
     }
 }

@@ -1,21 +1,18 @@
-package codeTree;
+package codeTree.dxdy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _dxdy_6 {
-
+public class _dxdy_1 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(bufferedReader.readLine());
         int[] dx = {0, 1, 0, -1};
         int[] dy = {1, 0, -1, 0};
-        int n = Integer.parseInt(bufferedReader.readLine());
-        int curX = 0;
-        int curY = 0;
-        int time = 0;
-        for (int i = 0; i < n; i++) {
+        int[] current = new int[2];
+        for (int i = 0; i < N; i++) {
             StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
             String direction = stringTokenizer.nextToken();
             int distance = Integer.parseInt(stringTokenizer.nextToken());
@@ -29,22 +26,10 @@ public class _dxdy_6 {
             } else {
                 dir = 3;
             }
-            for (int j = 0; j < distance; j++) {
-                curX += dx[dir];
-                curY += dy[dir];
-                time++;
-                if (curX == 0 && curY == 0) {
-                    break;
-                }
-            }
-            if (curX == 0 && curY == 0) {
-                break;
-            }
+            current[0] += dx[dir] * distance;
+            current[1] += dy[dir] * distance;
         }
-        if (curX != 0 || curY != 0) {
-            System.out.println(-1);
-        } else {
-            System.out.println(time);
-        }
+        System.out.println(current[0] + " " + current[1]);
     }
+
 }
