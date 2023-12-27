@@ -1,7 +1,5 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +12,8 @@ public class EnumTest {
         Map<EnumModel, Integer> map = new HashMap<>();
         map.put(Discount.CHRISTMAS_D_DAY, 1);
         System.out.println(map.containsKey(Discount.CHRISTMAS_D_DAY));
+        char z = 'Z';
+        System.out.println((int) z);
     }
 
     public static List<EnumModel> values() {
@@ -22,7 +22,8 @@ public class EnumTest {
     }
 
     public static EnumModel getBy(String name) {
-        return values().stream().filter(enumModel -> enumModel.getEventName().equals(name)).findFirst().orElseThrow(IllegalArgumentException::new);
+        return values().stream().filter(enumModel -> enumModel.getEventName().equals(name)).findFirst()
+                .orElseThrow(IllegalArgumentException::new);
 
     }
 
