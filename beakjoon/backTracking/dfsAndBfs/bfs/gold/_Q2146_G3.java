@@ -36,12 +36,14 @@ public class _Q2146_G3 {
             }
         }
 
-        for (int row = 0; row < N; row++) {
-            for (int col = 0; col < N; col++) {
-                System.out.print(map[row][col] + " ");
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (map[i][j] != 0) {
+                    bfsDistance(i, j);
+                }
             }
-            System.out.println();
         }
+        System.out.println(minDistance);
     }
 
     private static void bfs(int row, int col, int numberOfIsland) {
@@ -63,6 +65,35 @@ public class _Q2146_G3 {
                     visited[nx][ny] = true;
                     map[nx][ny] = numberOfIsland;
                     queue.offer(new int[]{nx, ny});
+                }
+            }
+        }
+    }
+
+    private static void bfsDistance(int row, int col) {
+        int numberOfIsland = map[row][col];
+        int[][] sumMap = new int[N][N];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{row, col});
+        sumMap[row][col] = 1;
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int x = current[0];
+            int y = current[1];
+            if (map[x][y] != 0 && map[x][y] != numberOfIsland) {
+                minDistance = Math.min(minDistance, sumMap[x][y] - 2);
+                return;
+            }
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx < 0 || ny < 0 || nx >= N || ny >= N) {
+                    continue;
+                }
+
+                if (sumMap[nx][ny] == 0 && map[nx][ny] != numberOfIsland) {
+                    queue.offer(new int[]{nx, ny});
+                    sumMap[nx][ny] = sumMap[x][y] + 1;
                 }
             }
         }
