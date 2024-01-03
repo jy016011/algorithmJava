@@ -3,8 +3,6 @@ package beakjoon.backTracking.dfsAndBfs.bfs.gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class _Q9466_G3 {
@@ -31,31 +29,25 @@ public class _Q9466_G3 {
                 if (done[stdNumber]) {
                     continue;
                 }
-                bfs(stdNumber);
+                dfs(stdNumber);
             }
-            result.append(cnt).append(System.lineSeparator());
+            result.append(N - cnt).append(System.lineSeparator());
         }
         System.out.println(result);
     }
 
-    private static void bfs(int studentNumber) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(studentNumber);
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            if (visited[current]) {
-                done[current] = true;
-                cnt++;
-            } else {
-                visited[current] = true;
-            }
-
-            if (!done[students[current]]) {
-                queue.offer(students[current]);
-                continue;
-            }
-            visited[current] = false;
+    private static void dfs(int current) {
+        if (visited[current]) {
             done[current] = true;
+            cnt++;
+        } else {
+            visited[current] = true;
         }
+
+        if (!done[students[current]]) {
+            dfs(students[current]);
+        }
+        visited[current] = false;
+        done[current] = true;
     }
 }
