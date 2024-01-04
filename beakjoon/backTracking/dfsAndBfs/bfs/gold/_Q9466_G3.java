@@ -47,7 +47,6 @@ public class _Q9466_G3 {
         if (!done[students[current]]) {
             dfs(students[current]);
         }
-        visited[current] = false;
         done[current] = true;
     }
 }
