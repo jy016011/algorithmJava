@@ -86,12 +86,10 @@ public class _Q16920_G2 {
     private static int takeATurn(int player, int s) {
         int[] dx = {-1, 1, 0, 0};
         int[] dy = {0, 0, -1, 1};
-        boolean[][] visited = new boolean[N][M];
         Queue<Node> queue = new LinkedList<>();
         int cnt = 0;
         for (Node playerPosition : playerPositions[player]) {
             queue.offer(playerPosition);
-            visited[playerPosition.x][playerPosition.y] = true;
         }
         playerPositions[player].clear();
         while (!queue.isEmpty()) {
@@ -107,15 +105,13 @@ public class _Q16920_G2 {
                     continue;
                 }
 
-                if (!visited[nx][ny] && map[nx][ny] == EMPTY) {
-                    visited[nx][ny] = true;
+                if (map[nx][ny] == EMPTY) {
                     map[nx][ny] = (char) (player + '0');
                     cnt++;
                     queue.offer(new Node(nx, ny, current.s + 1));
                 }
             }
         }
-
         return cnt;
     }
 }
