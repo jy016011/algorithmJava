@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _Q16920_G2 {
+public class _Q16902_G2_timeOut {
     private static class Node {
         int x;
         int y;
@@ -22,6 +22,7 @@ public class _Q16920_G2 {
     }
 
     private static final char EMPTY = '.';
+    private static final char WALL = '#';
     private static int N, M, P;
     private static char[][] map;
     private static int[] offsets;
@@ -50,9 +51,7 @@ public class _Q16920_G2 {
             for (int j = 0; j < M; j++) {
                 map[i][j] = row.charAt(j);
                 if (Character.isDigit(map[i][j])) {
-                    int player = Character.getNumericValue(map[i][j]);
-                    playerPositions[player].add(new Node(i, j, 0));
-                    counts[player]++;
+                    playerPositions[Character.getNumericValue(map[i][j])].add(new Node(i, j, 0));
                 }
             }
         }
@@ -75,10 +74,10 @@ public class _Q16920_G2 {
         while (!queue.isEmpty()) {
             int player = queue.poll();
             int cnt = takeATurn(player, offsets[player]);
-            if (cnt == 0) {
+            if (counts[player] == cnt) {
                 continue;
             }
-            counts[player] += cnt;
+            counts[player] = cnt;
             queue.offer(player);
         }
     }
@@ -92,18 +91,24 @@ public class _Q16920_G2 {
         for (Node playerPosition : playerPositions[player]) {
             queue.offer(playerPosition);
             visited[playerPosition.x][playerPosition.y] = true;
+            cnt++;
         }
-        playerPositions[player].clear();
         while (!queue.isEmpty()) {
             Node current = queue.poll();
             if (current.s >= s) {
-                playerPositions[player].add(new Node(current.x, current.y, 0));
                 continue;
             }
             for (int i = 0; i < 4; i++) {
                 int nx = current.x + dx[i];
                 int ny = current.y + dy[i];
                 if (nx < 0 || ny < 0 || nx >= N || ny >= M) {
+                    continue;
+                }
+
+                if (!visited[nx][ny] && Character.getNumericValue(map[nx][ny]) == player) {
+                    visited[nx][ny] = true;
+                    queue.offer(new Node(nx, ny, current.s));
+                    cnt++;
                     continue;
                 }
 
@@ -119,3 +124,4 @@ public class _Q16920_G2 {
         return cnt;
     }
 }
+
