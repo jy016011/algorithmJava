@@ -15,8 +15,17 @@ public class tests {
         List<LocalDate> days = new ArrayList<>();
         days.add(LocalDate.of(2023, 12, 1));
         LocalDate visitDay = LocalDate.of(2023, 12, 1);
-        System.out.println(days.contains(visitDay));
-        System.out.println((char) (1 + '0'));
+//        System.out.println(days.contains(visitDay));
+        System.out.println(isDoor('Z'));
+        System.out.println(isKey('*'));
+    }
+
+    private static boolean isDoor(char element) {
+        return (element >= 65 && element <= 90);
+    }
+
+    private static boolean isKey(char element) {
+        return (element >= 97 && element <= 122);
     }
 
 
