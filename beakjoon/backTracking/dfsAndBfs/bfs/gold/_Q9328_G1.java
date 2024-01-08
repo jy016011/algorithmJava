@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -42,11 +44,14 @@ public class _Q9328_G1 {
                         }
                         if (isKey(ch)) {
                             keys.add(ch);
+                            map[i][j] = WALL;
+                            entries.add(new int[]{i, j});
                             continue;
                         }
                         if (ch == DOCUMENT) {
                             cnt++;
-                            map[i][j] = EMPTY;
+                            map[i][j] = WALL;
+                            entries.add(new int[]{i, j});
                         }
                     }
                 }
@@ -58,6 +63,79 @@ public class _Q9328_G1 {
                     keys.add(keyOwned.charAt(i));
                 }
             }
+            bfs();
+            stringBuilder.append(cnt).append(System.lineSeparator());
+        }
+        System.out.println(stringBuilder);
+    }
+
+    private static void bfs() {
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
+        boolean getNewKey = false;
+        Queue<int[]> queue = new LinkedList<>();
+        List<int[]> cantOpenDoors = new ArrayList<>();
+        for (int[] entrance : entries) {
+            int x = entrance[0];
+            int y = entrance[1];
+            if (isDoor(map[x][y])) {
+                if (!canOpen(map[x][y])) {
+                    cantOpenDoors.add(entrance);
+                    continue;
+                }
+            }
+            queue.add(entrance);
+        }
+        entries = cantOpenDoors;
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int x = current[0];
+            int y = current[1];
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx < 0 || ny < 0 || nx >= h || ny >= w || map[nx][ny] == WALL) {
+                    continue;
+                }
+                char nextValue = map[nx][ny];
+
+                if (isDoor(nextValue)) {
+                    if (canOpen(nextValue)) {
+                        map[nx][ny] = WALL;
+                        queue.offer(new int[]{nx, ny});
+                    } else {
+                        entries.add(new int[]{nx, ny});
+                    }
+                    continue;
+                }
+
+                if (nextValue == DOCUMENT) {
+                    map[nx][ny] = WALL;
+                    cnt++;
+                    queue.offer(new int[]{nx, ny});
+                    continue;
+                }
+
+                if (isKey(nextValue)) {
+                    if (!keys.contains(nextValue)) {
+                        keys.add(nextValue);
+                        getNewKey = true;
+                    }
+                    map[nx][ny] = WALL;
+                    queue.offer(new int[]{nx, ny});
+                    continue;
+                }
+
+                if (nextValue == EMPTY) {
+                    map[nx][ny] = WALL;
+                    queue.offer(new int[]{nx, ny});
+                }
+            }
+        }
+
+        if (getNewKey) {
+            bfs();
         }
     }
 
