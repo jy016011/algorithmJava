@@ -17,10 +17,6 @@ public class _Q17071_P5 {
         visited = new boolean[500_001][2];
         N = Integer.parseInt(stringTokenizer.nextToken());
         K = Integer.parseInt(stringTokenizer.nextToken());
-        if (N == K) {
-            System.out.println(0);
-            return;
-        }
         System.out.println(bfs());
     }
 
