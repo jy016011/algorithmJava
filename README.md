@@ -1,10 +1,8 @@
-# src
+Java Src Files of algorithm problems solved
 
-Java Src Files of preparing algorithm
+## java Note
 
-# 문제들을 풀면서 알게된 것들 안 까먹으려고 정리한 메모입니다. #
-
-***23.09.17***
+### 23.09.17
 
 FoldingPaper구현을 파이썬과 자바 두 코드로 각각 작성하였는데,
 
@@ -16,7 +14,8 @@ FoldingPaper구현을 파이썬과 자바 두 코드로 각각 작성하였는�
 앞으로 이런부분에 주의하며 코딩해야할듯.
 
 ---
-***23.10.16***
+
+### 23.10.16
 
 백준 2346문제 풀이간 Deque를 LinkedList로 구현시 메모리 초과 발생하는 문제가 있었음.
 
@@ -46,7 +45,7 @@ But, Thread-safe하지 않으므로 Multi Thread환경에서는 문제가 있다
 
 ---
 
-***23.10.17***
+### 23.10.17
 
 Arrays.sort와 Collections.sort의 차이?
 
@@ -70,7 +69,7 @@ TimSort의 시간 복잡도는 평균과 최악 모두 O(nlogn).
 
 ---
 
-***23.10.18***
+### 23.10.18
 
 split()을 이용하여 Strings 배열 만들었는데, regex를 "+"로 두면 dangling quantifier '+' 라며 오류 발생.
 
