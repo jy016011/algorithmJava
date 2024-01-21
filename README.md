@@ -1,6 +1,6 @@
 Java Src Files of algorithm problems solved
 
-## java Note
+## java 적응기 Note
 
 ### 23.09.17
 
