@@ -1,4 +1,4 @@
-package beakjoon.shortTermGrowth;
+package beakjoon.shortTermGrowth.q12685_G5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class _Q12685_G5_Improved {
         }
 
         for (int i = 1; i <= N; i++) {
-            for (int k = K; k - weights[i] >= 0; k--) {
+            for (int k = K; k >= weights[i]; k--) {
                 dp[k] = Math.max(dp[k], dp[k - weights[i]] + values[i]);
             }
         }
