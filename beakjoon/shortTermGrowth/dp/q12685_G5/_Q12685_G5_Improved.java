@@ -1,4 +1,4 @@
-package beakjoon.shortTermGrowth.q12685_G5;
+package beakjoon.shortTermGrowth.dp.q12685_G5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
