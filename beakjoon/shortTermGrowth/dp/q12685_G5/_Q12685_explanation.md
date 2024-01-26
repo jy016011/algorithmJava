@@ -31,7 +31,7 @@
 
 ```
 if i = 0 or k = 0
--> dp[k][i] = dp[k][i-1]
+-> 0
 
 else if weights[i] > k
 -> dp[k][i] = dp[k][i - 1]
