@@ -1,6 +1,20 @@
 package prgrammers;
 
-class Solution {
+/*
+    프로그래머스 PCCP 기출문제 4번: 수레 움직이기
+*/
+class _PCCP_4 {
+    public static void main(String[] args) {
+        _PCCP_4 solved = new _PCCP_4();
+        int[][] maze = {
+                {1, 0, 2},
+                {0, 0, 0},
+                {5, 0, 5},
+                {4, 0, 3}
+        };
+        System.out.println(solved.solution(maze)); // answer: 7
+    }
+
     private static class Node {
         int x;
         int y;
@@ -62,12 +76,15 @@ class Solution {
             return false;
         }
 
+        // both wagon cant switch each other
         if (
                 (red.x == nextBlue.x && red.y == nextBlue.y) &&
                         (blue.x == nextRed.x && blue.y == nextRed.y)
         ) {
             return false;
         }
+
+        // already visited
         if (
                 (!isRedEnd && redVisited[nextRed.x][nextRed.y]) ||
                         (!isBlueEnd && blueVisited[nextBlue.x][nextBlue.y])
@@ -75,6 +92,7 @@ class Solution {
             return false;
         }
 
+        // both wagon crashed
         if (nextRed.x == nextBlue.x && nextRed.y == nextBlue.y) {
             return false;
         }
