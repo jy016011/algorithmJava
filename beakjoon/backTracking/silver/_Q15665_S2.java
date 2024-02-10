@@ -1,0 +1,50 @@
+package beakjoon.backTracking.silver;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class _Q15665_S2 {
+    private static int M;
+    private static int[] sequence;
+    private static Set<Integer> set;
+    private static StringBuilder stringBuilder;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        int N = Integer.parseInt(stringTokenizer.nextToken());
+        M = Integer.parseInt(stringTokenizer.nextToken());
+        sequence = new int[M];
+        set = new HashSet<>();
+        stringBuilder = new StringBuilder();
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        for (int i = 0; i < N; i++) {
+            set.add(Integer.parseInt(stringTokenizer.nextToken()));
+        }
+        backTracking(0);
+        System.out.println(stringBuilder);
+
+    }
+
+    private static void backTracking(int depth) {
+        if (depth == M) {
+            for (int number :
+                    sequence) {
+                stringBuilder.append(number).append(" ");
+            }
+            stringBuilder.append(System.lineSeparator());
+            return;
+        }
+
+        for (int number :
+                set) {
+            sequence[depth] = number;
+            backTracking(depth + 1);
+            sequence[depth] = 0;
+        }
+    }
+}

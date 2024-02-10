@@ -3,35 +3,27 @@ package beakjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 // some simple tests while coding other works
 public class tests {
-    private static final int TEST = 1;
-    private static int TEST2;
-    static List<Integer> test1;
-    private static int M;
-    private static boolean[] visited = new boolean[50];
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        M = Integer.parseInt(bufferedReader.readLine());
-        pickChicken(0);
-    }
-
-    private static void pickChicken(int depth) {
-        if (depth == M) {
-//            System.out.println(depth);
-            return;
-        }
-
-        for (int i = depth; i < 50; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                pickChicken(depth + 1);
-                visited[i] = false;
+        Map<String, Integer> map = new HashMap<>();
+        String[] names = {"leo", "leo"};
+        for (String name :
+                names) {
+            if (map.containsKey(name)) {
+                map.put(name, map.get(name) + 1);
+                continue;
             }
+            map.put(name, 1);
         }
+        String leo = "leo";
+        System.out.println(map.get(leo));
+        int[][] test = new int[3][];
     }
 
 
