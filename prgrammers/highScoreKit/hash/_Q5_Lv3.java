@@ -19,8 +19,6 @@ public class _Q5_Lv3 {
 
     public int[] solution(String[] genres, int[] plays) {
         Map<String, List<int[]>> music = new HashMap<>(); // key: genre, value: music info(id, play time) of key
-
-        // get genre, play time of genre: 'map' hash map and get music info of each genre: 'music' hash map
         for (int i = 0; i < genres.length; i++) {
             if (music.containsKey(genres[i])) {
                 music.get(genres[i]).add(new int[]{i, plays[i]});
@@ -31,7 +29,7 @@ public class _Q5_Lv3 {
             }
         }
 
-        // sort music of each genre by play time
+        // sort music of each genre by play time DESC and by id ASC when play time is same
         for (List<int[]> values : music.values()) {
             values.sort((o1, o2) -> {
                 if (o2[1] == o1[1]) {
@@ -40,7 +38,7 @@ public class _Q5_Lv3 {
                 return o2[1] - o1[1];
             });
         }
-        // sort genre by total music play time
+        // sort genre by total music play time DESC
         List<String> genreArr = new ArrayList<>(music.keySet());
         genreArr.sort((o1, o2) -> {
             return sum(music.get(o2)) - sum(music.get(o1));
