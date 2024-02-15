@@ -1,4 +1,4 @@
-Java Src Files of algorithm problems solved
+# Java Src Files of algorithm problems solved
 
 ## java 적응기 Note
 
@@ -80,3 +80,39 @@ split()을 이용하여 Strings 배열 만들었는데, regex를 "+"로 두면 d
 ---
 
 이후 풀이하면서 인상 깊었던 문제들은 Velog에서 다루겠음.
+
+---
+
+## Java LTS(Long Term Support) 버전들
+
+### 1. Java 8 (~ 2030.12)
+
+- 오라클이 자바 인수 후 출시한 첫 번째 LTS 버전
+- 32비트를 지원하는 마지막 공식 Java 버전
+- Oracle(유료), Opne(무료) JDK로 나뉨
+- `LocalDateTime`등의 새로운 날짜와 시간 API
+- 람다식
+- Stream API
+- Unsigned Integer 계산
+- 인터페이스 Default 메소드(인터페이스 내 구현 가능한 메소드)
+- Optional class(null이 올 수 있는 값을 감싸는 Wrapper 클래스) 등
+
+### 2. Java 11 (~ 2026.09)
+
+- Oracle 및 Open JDK 통합, Oracle은 구독형 유료로 전환
+- 람다 지역 변수 `var` 키워드(데이터 유형 지정 없이 변수 선언 및 정의) 사용가능
+- HTTP Client API : HTTP/1.1, HTTP/2 지원 등
+
+### 3. Java 17 (~ 2029.09)
+
+- `Spring Boot 3.0`의 최소 요구 Java 버전
+- Sealed Class / Interface (싱속 혹은 구현할 클래스를 지정함) 정식 추가
+- Record Data Class(불변 데이터를 객체 간 전달) 정식 추가
+- Apple 실리콘 프로세서 정식 지원
+- 의사 난수 생성기를 통해 예측하기 어려운 난수 생성 API 추가 등
+
+### 4. 현재 사용 중인 버전들
+
+- SpringBoot 프로젝트: Java 17
+- 알고리즘 풀이: Java 11(BOJ 지원버전)
+
