@@ -31,8 +31,8 @@ public class _Q2_Lv4 {
             int midDistance = (minDistance + maxDistance) / 2;
             int distanceSum = 0;
             int removedStone = 0;
-            for (int i = 0; i < subDistances.length; i++) {
-                distanceSum += subDistances[i];
+            for (int subDistance : subDistances) {
+                distanceSum += subDistance;
                 if (distanceSum < midDistance) {
                     removedStone++;
                     continue;
