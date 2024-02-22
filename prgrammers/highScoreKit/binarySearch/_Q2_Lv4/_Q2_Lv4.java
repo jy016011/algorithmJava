@@ -1,4 +1,4 @@
-package prgrammers.highScoreKit.binarySearch;
+package prgrammers.highScoreKit.binarySearch._Q2_Lv4;
 
 import java.util.Arrays;
 
