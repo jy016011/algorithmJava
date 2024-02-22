@@ -2,6 +2,9 @@ package prgrammers.highScoreKit.heap;
 
 import java.util.PriorityQueue;
 
+/*
+프로그래머스 코딩테스트 고득점 kit 힙, 문제 2번: 디스크 컨트롤러
+ */
 public class _Q2_Lv2 {
     public static void main(String[] args) {
         _Q2_Lv2 solved = new _Q2_Lv2();

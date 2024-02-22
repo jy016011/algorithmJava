@@ -2,6 +2,9 @@ package prgrammers.highScoreKit.sort;
 
 import java.util.Arrays;
 
+/*
+프로그래머스 코딩테스트 고득점 kit 정렬, 문제 3번: H-Index
+ */
 public class _Q3_Lv3 {
     public static void main(String[] args) {
         _Q3_Lv3 solved = new _Q3_Lv3();

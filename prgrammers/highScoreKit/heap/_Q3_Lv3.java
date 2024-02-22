@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/*
+프로그래머스 코딩테스트 고득점 kit 힙, 문제 3번: 이중우선순위큐
+ */
 public class _Q3_Lv3 {
     private static final char INSERT = 'I';
     private static final char DELETE = 'D';

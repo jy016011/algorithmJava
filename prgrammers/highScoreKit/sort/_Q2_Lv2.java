@@ -2,6 +2,9 @@ package prgrammers.highScoreKit.sort;
 
 import java.util.Arrays;
 
+/*
+프로그래머스 코딩테스트 고득점 kit 정렬, 문제 2번: 가장 큰 수
+ */
 public class _Q2_Lv2 {
 
     public static void main(String[] args) {

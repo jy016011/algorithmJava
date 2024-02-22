@@ -2,6 +2,9 @@ package prgrammers.highScoreKit.sort;
 
 import java.util.Arrays;
 
+/*
+프로그래머스 코딩테스트 고득점 kit 정렬, 문제 1번: K번째 수
+ */
 public class _Q1_Lv1 {
 
     public static void main(String[] args) {

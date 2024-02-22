@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /*
+프로그래머스 코딩테스트 고득점 kit 힙, 문제 3번: 이중우선순위큐
 faster than using PriorityQueue.remove() method
  */
 public class _Q3_Lv3_NotUsedRemoveMethod {
