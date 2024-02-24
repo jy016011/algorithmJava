@@ -7,6 +7,7 @@ public class sortingWithRemain {
     public static void main(String[] args) {
         sortingWithRemain solved = new sortingWithRemain();
         int[] numbers = {2, 5, 6, 13, 14, 16, 35};
+        // answer: [14, 2, 16, 6, 35, 5, 13]
         System.out.println(Arrays.toString(solved.solution(numbers)));
     }
 
