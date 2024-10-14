@@ -1,4 +1,4 @@
-package algorithmJava.codeTree.samsung;
+package codeTree.samsung;
 
 import java.io.BufferedReader;
 import java.io.IOException;
