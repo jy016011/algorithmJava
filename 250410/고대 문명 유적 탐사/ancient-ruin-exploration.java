@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,7 +27,6 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		// 탐사 반복 횟수
@@ -82,6 +79,7 @@ public class Main {
 					// 90도씩 총 세번 회전하며 탐색
 					for (int degreeCount = 1; degreeCount <= 3; degreeCount++) {
 						rotated = rotatePart(rotated, centerRow, centerCol);
+						// 획득한 유물 좌표를 저장하는 우선순위 큐
 						PriorityQueue<int[]> queue = new PriorityQueue<>((o1, o2) -> {
 							if (o1[1] == o2[1])
 								return o2[0] - o1[0];
@@ -95,7 +93,6 @@ public class Main {
 			}
 			// 최적의 케이스
 			Case optimalCase = cases.poll();
-//			System.out.println("Turn" + count + "case score: " + optimalCase.score);
 			// 턴에서 1차 획득 실패시 모든 턴은 종료됨
 			if (optimalCase.score == 0)
 				break;
@@ -118,23 +115,9 @@ public class Main {
 			System.out.printf("%d ", result);
 		}
 
-//		int length = cases.size();
-//		for (int i = 0; i < length; i++) {
-//			Case c = cases.poll();
-//			System.out.printf("Score: %d, X: %d, Y: %d, Degree: %d\n", c.score, c.centerRow, c.centerCol,
-//					c.rotatedDegree);
-////			printMatrix(c.map);
-//			int tmp = c.changedPoints.size();
-//			for (int j = 0; j < tmp; j++) {
-//				int[] point = c.changedPoints.poll();
-//				System.out.printf("rx: %d, ry: %d\n", point[0], point[1]);
-//			}
-//		}
-
 	}
 
 	private static int bfsAreas(int[][] map, PriorityQueue<int[]> changedPoints) {
-//		printMatrix(map);
 		// 행렬에서 연결되는 부분을 찾음
 		boolean[][] visited = new boolean[5][5];
 		int score = 0;
@@ -143,11 +126,9 @@ public class Main {
 				if (!visited[i][j]) {
 					int temp = bfs(map, visited, i, j, changedPoints);
 					score += temp;
-//					System.out.printf("x: %d, y: %d, score: %d\n", i, j, temp);
 				}
 			}
 		}
-//		System.out.println("====");
 		return score;
 	}
 
@@ -204,7 +185,6 @@ public class Main {
 			for (int j = centerCol - 1; j <= centerCol + 1; j++) {
 				part[partRow][partCol] = map[i][j];
 				partCol++;
-//				System.out.printf("%d, %d\n", partRow, partCol);
 			}
 			partRow++;
 		}
@@ -214,9 +194,7 @@ public class Main {
 		// 5x5 행렬 복사 하기
 		int[][] temp = new int[5][5];
 		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				temp[i][j] = map[i][j];
-			}
+			temp[i] = map[i].clone();
 		}
 		partRow = 0;
 		partCol = 0;
