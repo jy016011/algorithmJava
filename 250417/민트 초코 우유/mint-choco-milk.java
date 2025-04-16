@@ -70,7 +70,7 @@ public class Main {
             }
         }
 
-        for (int turn = 0; turn < 2; turn++) {
+        for (int turn = 0; turn < T; turn++) {
             // 아침시간
             morning();
             // 점심시간
