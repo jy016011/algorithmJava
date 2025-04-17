@@ -76,13 +76,10 @@ public class Main {
             // 아침시간
             initScore();
             morning();
-//            printPiety();
             // 점심시간
             PriorityQueue<Student> spreaders = pickSpreaders();
-//            printPiety();
             // 저녁시간
             spread(spreaders);
-
             // 신앙심 출력
             printPiety();
         }
@@ -107,7 +104,7 @@ public class Main {
                 pietyMap[i][j]++;
                 char taste = tasteMap[i][j];
                 scoreBoard.put(taste, scoreBoard.get(taste) + pietyMap[i][j]);
-//                System.out.println(String.format("%c %d", taste, scoreBoard.get(taste)));
+
             }
         }
     }
@@ -187,10 +184,6 @@ public class Main {
                     }
                 }
             }
-//            System.out.println(
-//                    String.format("x: %d, y: %d, taste: %c", curSpreader.x, curSpreader.y, curSpreader.taste));
-//            printTasteMap();
-//            printPiety();
         }
     }
 
@@ -203,26 +196,6 @@ public class Main {
         }
         System.out.println(sb.substring(0, sb.length() - 1));
     }
-
-//    private static void printPiety() {
-//        char[] sequence = {'K', 'N', 'I', 'H', 'M', 'C', 'T'};
-//        StringBuilder sb = new StringBuilder();
-//        for (char taste :
-//                sequence) {
-//            int total = 0;
-//            for (int i = 0; i < N; i++) {
-//                for (int j = 0; j < N; j++) {
-//                    if (tasteMap[i][j] != taste) {
-//                        continue;
-//                    }
-//                    total += pietyMap[i][j];
-//                }
-//
-//            }
-//            sb.append(total).append(' ');
-//        }
-//        System.out.println(sb.substring(0, sb.length() - 1));
-//    }
 
     private static void combineTaste(char spreaderTaste, int x, int y) {
         char targetTaste = tasteMap[x][y];
