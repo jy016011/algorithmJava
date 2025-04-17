@@ -1,4 +1,5 @@
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,9 +34,9 @@ public class Main {
 
     static char[][] tasteMap;
     static int[][] pietyMap;
-    static int[][] teamMap;
     static boolean[][] spreaderMap;
     static Map<Character, Integer> tasteOrder;
+    static Map<Character, Integer> scoreBoard;
 
 
     public static void main(String[] args) throws IOException {
@@ -73,22 +74,40 @@ public class Main {
 
         for (int turn = 0; turn < T; turn++) {
             // 아침시간
+            initScore();
             morning();
+//            printPiety();
             // 점심시간
             PriorityQueue<Student> spreaders = pickSpreaders();
-
+//            printPiety();
             // 저녁시간
             spread(spreaders);
 
-//            // 신앙심 출력
+            // 신앙심 출력
             printPiety();
         }
+    }
+
+    private static void initScore() {
+        scoreBoard = new HashMap<>();
+        scoreBoard.put('T', 0);
+        scoreBoard.put('C', 0);
+        scoreBoard.put('M', 0);
+
+        scoreBoard.put('H', 0); // cHoco milk
+        scoreBoard.put('I', 0); // mInt milk
+        scoreBoard.put('N', 0); // miNt choco
+
+        scoreBoard.put('K', 0); // mint chock milK
     }
 
     private static void morning() {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 pietyMap[i][j]++;
+                char taste = tasteMap[i][j];
+                scoreBoard.put(taste, scoreBoard.get(taste) + pietyMap[i][j]);
+//                System.out.println(String.format("%c %d", taste, scoreBoard.get(taste)));
             }
         }
     }
@@ -130,6 +149,7 @@ public class Main {
             }
             int piety = curSpreader.piety - 1;
             pietyMap[curSpreader.x][curSpreader.y] = 1;
+            scoreBoard.put(curSpreader.taste, scoreBoard.get(curSpreader.taste) - (curSpreader.piety - 1));
             int direction = curSpreader.piety % 4;
             int x = curSpreader.x;
             int y = curSpreader.y;
@@ -147,8 +167,10 @@ public class Main {
                     y = ny;
                 } else { // 전파 대상이 전파자의 신봉 음식과 다른 경우
                     if (piety > pietyMap[nx][ny]) { // 전파자의 신앙심이 더 큰 경우
+                        scoreBoard.put(tasteMap[nx][ny], scoreBoard.get(tasteMap[nx][ny]) - pietyMap[nx][ny]);
                         tasteMap[nx][ny] = curSpreader.taste;
                         pietyMap[nx][ny]++;
+                        scoreBoard.put(curSpreader.taste, scoreBoard.get(curSpreader.taste) + pietyMap[nx][ny]);
                         piety -= pietyMap[nx][ny];
                         spreaderMap[nx][ny] = false;
                         x = nx;
@@ -156,13 +178,19 @@ public class Main {
                     } else { // 전파자의 신앙심이 이하인 경우
                         // 약한 전파
                         // 맛이 바뀜
+                        scoreBoard.put(tasteMap[nx][ny], scoreBoard.get(tasteMap[nx][ny]) - pietyMap[nx][ny]);
                         combineTaste(curSpreader.taste, nx, ny);
                         pietyMap[nx][ny] += piety;
+                        scoreBoard.put(tasteMap[nx][ny], scoreBoard.get(tasteMap[nx][ny]) + pietyMap[nx][ny]);
                         piety = 0;
                         spreaderMap[nx][ny] = false;
                     }
                 }
             }
+//            System.out.println(
+//                    String.format("x: %d, y: %d, taste: %c", curSpreader.x, curSpreader.y, curSpreader.taste));
+//            printTasteMap();
+//            printPiety();
         }
     }
 
@@ -171,20 +199,30 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (char taste :
                 sequence) {
-            int total = 0;
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    if (tasteMap[i][j] != taste) {
-                        continue;
-                    }
-                    total += pietyMap[i][j];
-                }
-
-            }
-            sb.append(total).append(' ');
+            sb.append(scoreBoard.get(taste)).append(' ');
         }
         System.out.println(sb.substring(0, sb.length() - 1));
     }
+
+//    private static void printPiety() {
+//        char[] sequence = {'K', 'N', 'I', 'H', 'M', 'C', 'T'};
+//        StringBuilder sb = new StringBuilder();
+//        for (char taste :
+//                sequence) {
+//            int total = 0;
+//            for (int i = 0; i < N; i++) {
+//                for (int j = 0; j < N; j++) {
+//                    if (tasteMap[i][j] != taste) {
+//                        continue;
+//                    }
+//                    total += pietyMap[i][j];
+//                }
+//
+//            }
+//            sb.append(total).append(' ');
+//        }
+//        System.out.println(sb.substring(0, sb.length() - 1));
+//    }
 
     private static void combineTaste(char spreaderTaste, int x, int y) {
         char targetTaste = tasteMap[x][y];
@@ -357,6 +395,7 @@ public class Main {
             int y = cur[1];
             pietyMap[x][y]--; // 팀 구성원 모두의 신앙심 -1
             team.offer(new Student(x, y, tasteMap[x][y], pietyMap[x][y])); // 팀에 구성원 추가
+            scoreBoard.put(teamTaste, scoreBoard.get(teamTaste) - 1);
             for (int i = 0; i < 4; i++) {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
@@ -377,6 +416,7 @@ public class Main {
         int teamSize = team.size();
         Student spreader = team.poll(); // 대표자
         spreader.piety += teamSize; // 대표자에게 구성원 수 만큼 더해줌(이미 반복문에서 1만큼 뺐으므로)
+        scoreBoard.put(teamTaste, scoreBoard.get(teamTaste) + teamSize);
         pietyMap[spreader.x][spreader.y] = spreader.piety;
         spreaderMap[spreader.x][spreader.y] = true;
 
